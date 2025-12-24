@@ -33,7 +33,6 @@
 
 * {
   box-sizing: border-box;
-  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 body {
@@ -90,6 +89,7 @@ body {
   border-radius: var(--radius-sm);
   cursor: pointer;
   margin-bottom: 0.25rem;
+  transition: all 0.2s ease;
 }
 
 .menu-item:hover {
@@ -113,8 +113,7 @@ body {
 
 .app-header {
   height: var(--header-height);
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
+  background: white;
   border-bottom: 1px solid var(--border-light);
   display: flex;
   align-items: center;
@@ -142,6 +141,7 @@ body {
   margin-left: 0.5rem;
   font-size: 0.85rem;
   width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .user-profile {
@@ -261,6 +261,7 @@ tr:hover td {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
