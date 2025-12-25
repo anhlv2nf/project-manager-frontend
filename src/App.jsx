@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Layout from './components/Layout';
 import UserManagement from './components/UserManagement';
 import ProjectManagement from './components/ProjectManagement';
+import ProjectDetail from './components/ProjectDetail';
 import Login from './components/Login';
 import authService from './services/authService';
 
@@ -40,6 +41,12 @@ const App = () => {
                 <Route path="/projects" element={
                     <PrivateRoute>
                         <ProjectManagement />
+                    </PrivateRoute>
+                } />
+
+                <Route path="/projects/:id" element={
+                    <PrivateRoute>
+                        <ProjectDetail />
                     </PrivateRoute>
                 } />
 

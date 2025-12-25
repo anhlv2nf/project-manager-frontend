@@ -17,10 +17,8 @@ const ProjectManagement = () => {
         name: '',
         description: '',
         status: PROJECT_STATUS.PLANNED,
-        pm_id: '',
         start_date: '',
-        end_date: '',
-        members: []
+        end_date: ''
     });
 
     useEffect(() => {
@@ -49,7 +47,6 @@ const ProjectManagement = () => {
     const validateForm = () => {
         const newErrors = {};
         if (isEmpty(currentProject.name)) newErrors.name = 'Tên dự án không được để trống';
-        if (!currentProject.pm_id) newErrors.pm_id = 'Vui lòng chọn PM chính';
 
         if (currentProject.start_date && currentProject.end_date) {
             if (new Date(currentProject.start_date) > new Date(currentProject.end_date)) {
@@ -66,17 +63,11 @@ const ProjectManagement = () => {
         if (!validateForm()) return;
 
         setSubmitting(true);
-        // Normalize members to IDs only for API
-        const payload = {
-            ...currentProject,
-            members: (currentProject.members || []).map(m => typeof m === 'object' ? m.id : m)
-        };
-
         try {
             if (isEditing) {
-                await projectService.updateProject(currentProject.id, payload);
+                await projectService.updateProject(currentProject.id, currentProject);
             } else {
-                await projectService.createProject(payload);
+                await projectService.createProject(currentProject);
             }
             setShowModal(false);
             resetForm();
@@ -93,10 +84,8 @@ const ProjectManagement = () => {
             name: '',
             description: '',
             status: PROJECT_STATUS.PLANNED,
-            pm_id: '',
             start_date: '',
-            end_date: '',
-            members: []
+            end_date: ''
         });
         setErrors({});
         setIsEditing(false);
@@ -104,10 +93,12 @@ const ProjectManagement = () => {
 
     const handleEdit = (project) => {
         setCurrentProject({
-            ...project,
-            pm_id: project.pm?.id || '',
-            // Ensure members are IDs for the form but keep the logic flexible
-            members: project.members || []
+            id: project.id,
+            name: project.name,
+            description: project.description,
+            status: project.status,
+            start_date: project.start_date,
+            end_date: project.end_date
         });
         setIsEditing(true);
         setErrors({});
@@ -162,7 +153,6 @@ const ProjectManagement = () => {
                     errors={errors}
                     submitting={submitting}
                     onInputChange={handleInputChange}
-                    setProject={setCurrentProject}
                     onCancel={() => setShowModal(false)}
                     onSubmit={handleSubmit}
                 />

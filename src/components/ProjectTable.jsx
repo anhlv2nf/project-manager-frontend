@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BaseBadge from './common/BaseBadge';
 import { PROJECT_STATUS_LABELS, PROJECT_STATUS_TYPES } from '../constants/projectConstants';
 
 const ProjectTable = ({ projects, onEdit, onDelete }) => {
+    const navigate = useNavigate();
+
     return (
         <div style={{ overflowX: 'auto' }}>
             <table>
@@ -20,17 +23,29 @@ const ProjectTable = ({ projects, onEdit, onDelete }) => {
                     {projects.map(project => (
                         <tr key={project.id} className="fade-in">
                             <td style={{ fontWeight: 600, color: 'var(--text-main)' }}>
-                                {project.name}
+                                <div
+                                    style={{ cursor: 'pointer', color: 'var(--primary)' }}
+                                    onClick={() => navigate(`/projects/${project.id}`)}
+                                >
+                                    {project.name}
+                                </div>
                                 <div style={{ fontWeight: 400, fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                                     {project.description?.substring(0, 50)}...
                                 </div>
                             </td>
                             <td>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <div className="avatar" style={{ width: '24px', height: '24px', fontSize: '10px' }}>
-                                        {project.pm?.name?.[0]}
-                                    </div>
-                                    <span style={{ fontWeight: 500 }}>{project.pm?.name}</span>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    {(project.managers || []).map(pm => (
+                                        <div
+                                            key={pm.id}
+                                            className="avatar"
+                                            style={{ width: '24px', height: '24px', fontSize: '10px' }}
+                                            title={pm.name}
+                                        >
+                                            {pm.name?.[0]}
+                                        </div>
+                                    ))}
+                                    {project.managers?.length === 0 && <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>Chưa có PM</span>}
                                 </div>
                             </td>
                             <td>
@@ -69,7 +84,8 @@ const ProjectTable = ({ projects, onEdit, onDelete }) => {
                                 </div>
                             </td>
                             <td style={{ textAlign: 'right' }}>
-                                <button className="btn" style={{ padding: '0.4rem 0.6rem' }} onClick={() => onEdit(project)}>Sửa</button>
+                                <button className="btn" style={{ padding: '0.4rem 0.6rem' }} onClick={() => navigate(`/projects/${project.id}`)}>Chi tiết</button>
+                                <button className="btn" style={{ padding: '0.4rem 0.6rem', marginLeft: '6px' }} onClick={() => onEdit(project)}>Sửa</button>
                                 <button className="btn" style={{ padding: '0.4rem 0.6rem', color: 'var(--danger)', marginLeft: '6px' }} onClick={() => onDelete(project.id)}>Xóa</button>
                             </td>
                         </tr>

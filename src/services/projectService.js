@@ -19,6 +19,10 @@ const projectService = {
 
     deleteProject: (id) => {
         return apiClient.delete(`/api/projects/${id}`);
+    },
+
+    syncProjectUsers: (id, users) => {
+        return apiClient.post(`/api/projects/${id}/users`, { users });
     }
 };
 
