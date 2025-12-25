@@ -52,9 +52,9 @@ const Layout = ({ children }) => {
                     <NavLink to="/users" className={({ isActive }) => `menu-item ${isActive ? 'active' : ''}`}>
                         Người dùng
                     </NavLink>
-                    <div className="menu-item" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
-                        Dự án (Sắp tới)
-                    </div>
+                    <NavLink to="/projects" className={({ isActive }) => `menu-item ${isActive ? 'active' : ''}`}>
+                        Dự án
+                    </NavLink>
                 </nav>
             </aside>
 

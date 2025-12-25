@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import UserManagement from './components/UserManagement';
+import ProjectManagement from './components/ProjectManagement';
 import Login from './components/Login';
 import authService from './services/authService';
 
@@ -33,6 +34,12 @@ const App = () => {
                 <Route path="/users" element={
                     <PrivateRoute>
                         <UserManagement />
+                    </PrivateRoute>
+                } />
+
+                <Route path="/projects" element={
+                    <PrivateRoute>
+                        <ProjectManagement />
                     </PrivateRoute>
                 } />
 
