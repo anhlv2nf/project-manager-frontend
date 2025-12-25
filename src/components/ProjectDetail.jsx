@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import projectService from '../services/projectService';
 import ProjectMembersTab from './ProjectMembersTab';
 import BaseBadge from './common/BaseBadge';
+import LoadingSpinner from './common/LoadingSpinner';
 import { PROJECT_STATUS_LABELS, PROJECT_STATUS_TYPES } from '../constants/projectConstants';
 
 const ProjectDetail = () => {
@@ -29,7 +30,7 @@ const ProjectDetail = () => {
     };
 
     if (loading) {
-        return <div style={{ padding: '4rem', textAlign: 'center' }}>Đang tải thông tin dự án...</div>;
+        return <LoadingSpinner />;
     }
 
     return (

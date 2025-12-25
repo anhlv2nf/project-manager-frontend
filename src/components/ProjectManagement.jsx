@@ -3,6 +3,7 @@ import projectService from '../services/projectService';
 import ProjectTable from './ProjectTable';
 import ProjectForm from './ProjectForm';
 import BaseModal from './common/BaseModal';
+import LoadingSpinner from './common/LoadingSpinner';
 import { PROJECT_STATUS } from '../constants/projectConstants';
 import { isEmpty } from '../utils/validateHelper';
 
@@ -132,7 +133,7 @@ const ProjectManagement = () => {
                 </div>
 
                 {loading ? (
-                    <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--text-muted)' }}>Đang nạp dữ liệu...</div>
+                    <LoadingSpinner />
                 ) : (
                     <ProjectTable
                         projects={projects}

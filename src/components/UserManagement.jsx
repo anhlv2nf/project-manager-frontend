@@ -3,6 +3,7 @@ import userService from '../services/userService';
 import UserTable from './UserTable';
 import UserForm from './UserForm';
 import BaseModal from './common/BaseModal';
+import LoadingSpinner from './common/LoadingSpinner';
 import { USER_ROLES, USER_STATUS } from '../constants/userConstants';
 import { validateEmail, isEmpty } from '../utils/validateHelper';
 
@@ -129,7 +130,7 @@ const UserManagement = () => {
                 </div>
 
                 {loading ? (
-                    <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--text-muted)' }}>Đang nạp dữ liệu...</div>
+                    <LoadingSpinner />
                 ) : (
                     <UserTable
                         users={users}

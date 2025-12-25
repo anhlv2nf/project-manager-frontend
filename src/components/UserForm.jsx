@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseInput from './common/BaseInput';
+import BaseSelect from './common/BaseSelect';
 import LoadingButton from './common/LoadingButton';
 import { USER_ROLES, USER_STATUS } from '../constants/userConstants';
 
@@ -43,23 +44,29 @@ const UserForm = ({
                     onChange={onInputChange}
                     placeholder="090..."
                 />
-                <div className="form-group">
-                    <label>Vai trò hệ thống</label>
-                    <select name="role" value={currentUser.role} onChange={onInputChange}>
-                        <option value={USER_ROLES.MEMBER}>Thành viên</option>
-                        <option value={USER_ROLES.MANAGER}>Quản lý dự án</option>
-                        <option value={USER_ROLES.ADMIN}>Quản trị viên</option>
-                    </select>
-                </div>
+                <BaseSelect
+                    label="Vai trò hệ thống"
+                    name="role"
+                    value={currentUser.role}
+                    onChange={onInputChange}
+                    options={[
+                        { value: USER_ROLES.MEMBER, label: 'Thành viên' },
+                        { value: USER_ROLES.MANAGER, label: 'Quản lý dự án' },
+                        { value: USER_ROLES.ADMIN, label: 'Quản trị viên' }
+                    ]}
+                />
             </div>
 
-            <div className="form-group">
-                <label>Trạng thái tài khoản</label>
-                <select name="status" value={currentUser.status} onChange={onInputChange}>
-                    <option value={USER_STATUS.ACTIVE}>Đang hoạt động</option>
-                    <option value={USER_STATUS.INACTIVE}>Đang bị khóa</option>
-                </select>
-            </div>
+            <BaseSelect
+                label="Trạng thái tài khoản"
+                name="status"
+                value={currentUser.status}
+                onChange={onInputChange}
+                options={[
+                    { value: USER_STATUS.ACTIVE, label: 'Đang hoạt động' },
+                    { value: USER_STATUS.INACTIVE, label: 'Đang bị khóa' }
+                ]}
+            />
 
             <BaseInput
                 label={`Mật khẩu ${isEditing ? '(Để trống nếu giữ nguyên)' : ''}`}

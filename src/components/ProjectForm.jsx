@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseInput from './common/BaseInput';
+import BaseSelect from './common/BaseSelect';
 import LoadingButton from './common/LoadingButton';
 import { PROJECT_STATUS_LABELS } from '../constants/projectConstants';
 
@@ -30,27 +31,21 @@ const ProjectForm = ({
                     name="description"
                     value={currentProject.description || ''}
                     onChange={onInputChange}
-                    style={{
-                        width: '100%',
-                        padding: '0.75rem',
-                        borderRadius: 'var(--radius-sm)',
-                        border: '1px solid var(--border-main)',
-                        minHeight: '80px',
-                        outline: 'none',
-                        fontFamily: 'inherit'
-                    }}
+                    style={{ minHeight: '100px' }}
                     placeholder="Mô tả mục tiêu, yêu cầu của dự án..."
                 />
             </div>
 
-            <div className="form-group">
-                <label>Trạng thái</label>
-                <select name="status" value={currentProject.status} onChange={onInputChange}>
-                    {Object.entries(PROJECT_STATUS_LABELS).map(([key, label]) => (
-                        <option key={key} value={key}>{label}</option>
-                    ))}
-                </select>
-            </div>
+            <BaseSelect
+                label="Trạng thái"
+                name="status"
+                value={currentProject.status}
+                onChange={onInputChange}
+                options={Object.entries(PROJECT_STATUS_LABELS).map(([key, label]) => ({
+                    value: key,
+                    label: label
+                }))}
+            />
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <BaseInput

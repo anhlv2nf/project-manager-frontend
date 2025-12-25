@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import projectService from '../services/projectService';
 import userService from '../services/userService';
 import LoadingButton from './common/LoadingButton';
-import BaseBadge from './common/BaseBadge';
+import BaseSelect from './common/BaseSelect';
+import { getAvailableUserOptions, getProjectRoleOptions } from '../utils/userHelper';
+import { PROJECT_MEMBER_ROLES, PROJECT_MEMBER_ROLE_LABELS } from '../constants/projectConstants';
 
 const ProjectMembersTab = ({ projectId, managers, members, onRefresh }) => {
     const [allUsers, setAllUsers] = useState([]);
@@ -76,23 +78,18 @@ const ProjectMembersTab = ({ projectId, managers, members, onRefresh }) => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <h4 style={{ margin: 0 }}>Thành viên tham dự ({assignments.length})</h4>
                 <div style={{ display: 'flex', gap: '10px' }}>
-                    <select
+                    <BaseSelect
+                        placeholder="+ Thêm thành viên..."
+                        containerStyle={{ margin: 0 }}
+                        style={{ width: '200px' }}
                         onChange={(e) => {
                             if (e.target.value) {
                                 handleAddUser(e.target.value);
                                 e.target.value = '';
                             }
                         }}
-                        style={{ width: '200px' }}
-                    >
-                        <option value="">+ Thêm thành viên...</option>
-                        {allUsers
-                            .filter(u => !assignments.find(a => a.user_id === u.id))
-                            .map(user => (
-                                <option key={user.id} value={user.id}>{user.name} ({user.email})</option>
-                            ))
-                        }
-                    </select>
+                        options={getAvailableUserOptions(allUsers, assignments.map(a => a.user_id))}
+                    />
                     <LoadingButton className="btn-primary" onClick={handleSave} loading={submitting}>
                         Lưu thay đổi
                     </LoadingButton>
@@ -123,14 +120,12 @@ const ProjectMembersTab = ({ projectId, managers, members, onRefresh }) => {
                                         <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{a.email}</div>
                                     </td>
                                     <td>
-                                        <select
+                                        <BaseSelect
                                             value={a.role_in_project}
                                             onChange={(e) => handleRoleChange(a.user_id, e.target.value)}
                                             style={{ padding: '0.3rem', width: 'auto' }}
-                                        >
-                                            <option value="manager">Project Manager</option>
-                                            <option value="member">Thành viên</option>
-                                        </select>
+                                            options={getProjectRoleOptions(PROJECT_MEMBER_ROLES, PROJECT_MEMBER_ROLE_LABELS)}
+                                        />
                                     </td>
                                     <td style={{ textAlign: 'right' }}>
                                         <button

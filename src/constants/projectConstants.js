@@ -18,3 +18,13 @@ export const PROJECT_STATUS_TYPES = {
     [PROJECT_STATUS.COMPLETED]: 'success',
     [PROJECT_STATUS.ON_HOLD]: 'danger'
 };
+
+export const PROJECT_MEMBER_ROLES = {
+    MANAGER: 'manager',
+    MEMBER: 'member'
+};
+
+export const PROJECT_MEMBER_ROLE_LABELS = {
+    [PROJECT_MEMBER_ROLES.MANAGER]: 'Project Manager',
+    [PROJECT_MEMBER_ROLES.MEMBER]: 'Thành viên'
+};
