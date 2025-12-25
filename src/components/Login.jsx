@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import authService from '../services/authService';
 import BaseInput from './common/BaseInput';
 import LoadingButton from './common/LoadingButton';
+import { USER_ROLES } from '../constants/userConstants';
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -20,7 +21,13 @@ const Login = () => {
 
         try {
             await authService.login(credentials);
-            window.location.href = '/';
+            const user = authService.getCurrentUser();
+
+            if (user && user.role === USER_ROLES.MANAGER) {
+                window.location.href = '/pm';
+            } else {
+                window.location.href = '/';
+            }
         } catch (err) {
             setError(err.response?.data?.message || 'Đăng nhập thất bại. Vui lòng thử lại.');
         } finally {
