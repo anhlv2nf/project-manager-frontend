@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseInput from './common/BaseInput';
 import BaseSelect from './common/BaseSelect';
+import BaseTextArea from './common/BaseTextArea';
 import LoadingButton from './common/LoadingButton';
 import { PROJECT_STATUS_LABELS } from '../constants/projectConstants';
 
@@ -25,16 +26,14 @@ const ProjectForm = ({
                 placeholder="Ví dụ: Hệ thống ERP v2"
             />
 
-            <div className="form-group">
-                <label>Mô tả dự án</label>
-                <textarea
-                    name="description"
-                    value={currentProject.description || ''}
-                    onChange={onInputChange}
-                    style={{ minHeight: '100px' }}
-                    placeholder="Mô tả mục tiêu, yêu cầu của dự án..."
-                />
-            </div>
+            <BaseTextArea
+                label="Mô tả dự án"
+                name="description"
+                value={currentProject.description || ''}
+                onChange={onInputChange}
+                style={{ minHeight: '100px' }}
+                placeholder="Mô tả mục tiêu, yêu cầu của dự án..."
+            />
 
             <BaseSelect
                 label="Trạng thái"

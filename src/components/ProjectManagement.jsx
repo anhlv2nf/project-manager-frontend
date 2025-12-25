@@ -3,6 +3,7 @@ import projectService from '../services/projectService';
 import ProjectTable from './ProjectTable';
 import ProjectForm from './ProjectForm';
 import BaseModal from './common/BaseModal';
+import BaseConfirmModal from './common/BaseConfirmModal';
 import LoadingSpinner from './common/LoadingSpinner';
 import { PROJECT_STATUS } from '../constants/projectConstants';
 import { isEmpty } from '../utils/validateHelper';
@@ -12,6 +13,8 @@ const ProjectManagement = () => {
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [deleteId, setDeleteId] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [errors, setErrors] = useState({});
     const [currentProject, setCurrentProject] = useState({
@@ -106,14 +109,22 @@ const ProjectManagement = () => {
         setShowModal(true);
     };
 
-    const handleDelete = async (id) => {
-        if (confirm('Xác nhận xóa dự án này?')) {
-            try {
-                await projectService.deleteProject(id);
-                fetchProjects();
-            } catch (error) {
-                alert('Không thể xóa dự án');
-            }
+    const handleDelete = (id) => {
+        setDeleteId(id);
+        setShowConfirm(true);
+    };
+
+    const confirmDelete = async () => {
+        setSubmitting(true);
+        try {
+            await projectService.deleteProject(deleteId);
+            fetchProjects();
+            setShowConfirm(false);
+        } catch (error) {
+            alert('Không thể xóa dự án');
+        } finally {
+            setSubmitting(false);
+            setDeleteId(null);
         }
     };
 
@@ -158,6 +169,17 @@ const ProjectManagement = () => {
                     onSubmit={handleSubmit}
                 />
             </BaseModal>
+
+            <BaseConfirmModal
+                show={showConfirm}
+                title="Xóa dự án"
+                content="Bạn có chắc chắn muốn xóa dự án này? Toàn bộ dữ liệu liên quan sẽ bị mất."
+                onClose={() => setShowConfirm(false)}
+                onConfirm={confirmDelete}
+                confirmText="Xóa bỏ"
+                type="danger"
+                loading={submitting}
+            />
         </div>
     );
 };

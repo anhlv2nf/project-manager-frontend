@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseInput from './common/BaseInput';
 import BaseSelect from './common/BaseSelect';
+import BaseRadio from './common/BaseRadio';
 import LoadingButton from './common/LoadingButton';
 import { USER_ROLES, USER_STATUS } from '../constants/userConstants';
 
@@ -57,7 +58,7 @@ const UserForm = ({
                 />
             </div>
 
-            <BaseSelect
+            <BaseRadio
                 label="Trạng thái tài khoản"
                 name="status"
                 value={currentUser.status}

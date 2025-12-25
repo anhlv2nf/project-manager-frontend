@@ -3,6 +3,7 @@ import userService from '../services/userService';
 import UserTable from './UserTable';
 import UserForm from './UserForm';
 import BaseModal from './common/BaseModal';
+import BaseConfirmModal from './common/BaseConfirmModal';
 import LoadingSpinner from './common/LoadingSpinner';
 import { USER_ROLES, USER_STATUS } from '../constants/userConstants';
 import { validateEmail, isEmpty } from '../utils/validateHelper';
@@ -13,6 +14,8 @@ const UserManagement = () => {
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [deleteId, setDeleteId] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [errors, setErrors] = useState({});
     const [currentUser, setCurrentUser] = useState({
@@ -102,15 +105,23 @@ const UserManagement = () => {
         setShowModal(true);
     };
 
-    const handleDelete = async (id) => {
-        if (confirm('Xác nhận xóa tài khoản này?')) {
-            try {
-                await userService.deleteUser(id);
-                fetchUsers();
-            } catch (error) {
-                console.error(error);
-                alert('Không thể xóa người dùng');
-            }
+    const handleDelete = (id) => {
+        setDeleteId(id);
+        setShowConfirm(true);
+    };
+
+    const confirmDelete = async () => {
+        setSubmitting(true);
+        try {
+            await userService.deleteUser(deleteId);
+            fetchUsers();
+            setShowConfirm(false);
+        } catch (error) {
+            console.error(error);
+            alert('Không thể xóa người dùng');
+        } finally {
+            setSubmitting(false);
+            setDeleteId(null);
         }
     };
 
@@ -155,6 +166,17 @@ const UserManagement = () => {
                     onSubmit={handleSubmit}
                 />
             </BaseModal>
+
+            <BaseConfirmModal
+                show={showConfirm}
+                title="Xóa tài khoản"
+                content="Bạn có chắc chắn muốn xóa tài khoản này? Hành động này không thể hoàn tác."
+                onClose={() => setShowConfirm(false)}
+                onConfirm={confirmDelete}
+                confirmText="Xóa bỏ"
+                type="danger"
+                loading={submitting}
+            />
         </div>
     );
 };
