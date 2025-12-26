@@ -520,12 +520,10 @@ tr:hover td {
   display: flex;
   gap: 2rem;
   align-items: center;
-  justify-content: center;
   position: relative;
   padding: 2rem;
-  width: 100%;
-  flex-wrap: wrap;
-  /* Wrap if screen is small */
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .pm-node {
@@ -606,12 +604,6 @@ tr:hover td {
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
   border-left: 8px solid #cbd5e1;
-}
-
-@media (max-width: 1200px) {
-  .pm-connector {
-    display: none;
-  }
 }
 
 /* Specific Node Styles */
