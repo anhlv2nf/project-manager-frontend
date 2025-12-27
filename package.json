@@ -10,10 +10,39 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "@yaireo/tagify": "^4.35.6",
     "axios": "^1.7.2",
+    "bootstrap": "^5.3.8",
+    "filepond": "^4.32.10",
+    "filepond-plugin-file-validate-size": "^2.2.8",
+    "filepond-plugin-file-validate-type": "^1.2.9",
+    "filepond-plugin-image-edit": "^1.6.3",
+    "filepond-plugin-image-exif-orientation": "^1.0.11",
+    "filepond-plugin-image-preview": "^4.6.12",
+    "gridjs": "^6.2.0",
+    "leaflet": "^1.9.4",
+    "plyr-react": "^6.0.0",
     "react": "^18.3.1",
+    "react-autocomplete-input": "^1.0.31",
+    "react-bootstrap": "^2.10.10",
+    "react-color-palette": "^7.3.1",
+    "react-country-state-city": "^1.1.12",
+    "react-datepicker": "^9.1.0",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.11.0"
+    "react-dragula": "^1.1.17",
+    "react-listbox": "^1.2.13",
+    "react-phone-number-input": "^3.4.14",
+    "react-range-slider-input": "^3.3.2",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.11.0",
+    "rxjs": "^7.8.2",
+    "sass": "^1.97.1",
+    "shepherd.js": "^14.5.1",
+    "simplebar-react": "^3.3.2",
+    "suneditor": "^2.47.8",
+    "swiper": "^12.0.3",
+    "yet-another-react-lightbox": "^3.28.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
@@ -23,6 +52,7 @@
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "typescript": "^5.9.3",
     "vite": "^5.3.1"
   }
 }

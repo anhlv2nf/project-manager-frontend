@@ -129,17 +129,49 @@ const ProjectManagement = () => {
     };
 
     return (
-        <div>
-            <div className="card">
-                <div className="card-header">
-                    <div>
-                        <h3>Quản lý Dự án</h3>
-                        <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '4px' }}>
-                            {projects.length} dự án đang được quản lý
-                        </div>
+        <div className="fade-in">
+            <div className="stats-grid">
+                <div className="stat-card">
+                    <div className="stat-icon" style={{ background: '#eef2ff', color: '#4f46e5' }}>📋</div>
+                    <div className="stat-info">
+                        <h4>Tổng dự án</h4>
+                        <div className="stat-value">{projects.length}</div>
                     </div>
-                    <button className="btn btn-primary" onClick={() => { resetForm(); setShowModal(true); }}>
-                        <span>+</span> Tạo dự án mới
+                </div>
+                <div className="stat-card">
+                    <div className="stat-icon" style={{ background: '#ecfdf5', color: '#10b981' }}>⚡</div>
+                    <div className="stat-info">
+                        <h4>Đang triển khai</h4>
+                        <div className="stat-value">{projects.filter(p => p.status === PROJECT_STATUS.IN_PROGRESS).length}</div>
+                    </div>
+                </div>
+                <div className="stat-card">
+                    <div className="stat-icon" style={{ background: '#fffbe3', color: '#f59e0b' }}>🕒</div>
+                    <div className="stat-info">
+                        <h4>Đang lập kế hoạch</h4>
+                        <div className="stat-value">{projects.filter(p => p.status === PROJECT_STATUS.PLANNED).length}</div>
+                    </div>
+                </div>
+                <div className="stat-card">
+                    <div className="stat-icon" style={{ background: '#fef2f2', color: '#ef4444' }}>⚠️</div>
+                    <div className="stat-info">
+                        <h4>Dự án rủi ro</h4>
+                        <div className="stat-value">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="card">
+                <div className="card-header" style={{ padding: '1.5rem 2rem' }}>
+                    <div>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Dự án đang thực hiện</h3>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '4px 0 0 0' }}>
+                            Danh sách và trạng thái chi tiết các dự án trong hệ thống.
+                        </p>
+                    </div>
+                    <button className="btn btn-primary" style={{ padding: '0.625rem 1.25rem', borderRadius: '10px' }} onClick={() => { resetForm(); setShowModal(true); }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                        Tạo dự án mới
                     </button>
                 </div>
 

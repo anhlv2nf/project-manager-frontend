@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Public+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
   --sidebar-width: 240px;
@@ -31,19 +31,118 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
+[data-theme-mode="dark"] {
+  --bg-main: #0f172a;
+  --bg-sidebar: #020617;
+  --bg-card: #1e293b;
+  --border-light: #334155;
+  --border-main: #475569;
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --primary-light: rgba(79, 70, 229, 0.1);
+}
+
+/* Global Dark Mode Overrides */
+[data-theme-mode="dark"] body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+[data-theme-mode="dark"] .card {
+  background-color: var(--bg-card);
+  border-color: var(--border-light);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme-mode="dark"] .app-header,
+[data-theme-mode="dark"] .glass-header {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-bottom-color: var(--border-light);
+}
+
+[data-theme-mode="dark"] .stat-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme-mode="dark"] .stat-info .stat-value {
+  color: #fff;
+}
+
+[data-theme-mode="dark"] table th {
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom-color: var(--border-light);
+}
+
+[data-theme-mode="dark"] table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme-mode="dark"] .form-group input,
+[data-theme-mode="dark"] .form-group select,
+[data-theme-mode="dark"] .form-group textarea,
+[data-theme-mode="dark"] .modal-content {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-color: var(--border-main);
+}
+
+[data-theme-mode="dark"] .modal-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme-mode="dark"] .btn:not(.btn-primary) {
+  background: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+[data-theme-mode="dark"] .btn:not(.btn-primary):hover {
+  background: #475569;
+}
+
+[data-theme-mode="dark"] .pm-node {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme-mode="dark"] .pm-node-title {
+  color: #fff;
+}
+
+[data-theme-mode="dark"] .pm-node-icon {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme-mode="dark"] h1,
+[data-theme-mode="dark"] h2,
+[data-theme-mode="dark"] h3 {
+  color: #fff !important;
+}
+
+[data-theme-mode="dark"] .text-muted,
+[data-theme-mode="dark"] p {
+  color: var(--text-muted) !important;
+}
+
+[data-theme-mode="dark"] input::placeholder {
+  color: #64748b;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Outfit', 'Public Sans', sans-serif;
   background-color: var(--bg-main);
   color: var(--text-main);
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
-  width: 100vw;
-  overflow: hidden;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Layout */
@@ -346,6 +445,86 @@ tr:hover td {
   box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
 }
 
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.1);
+  filter: brightness(0.9);
+}
+
+/* Dashboard Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-info h4 {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-info .stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 0.25rem;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.avatar-group {
+  display: flex;
+}
+
+/* Extra polishing for badges */
+.badge {
+  letter-spacing: 0.02em;
+}
+
 /* Modals */
 .modal-overlay {
   position: fixed;
@@ -503,12 +682,9 @@ tr:hover td {
 /* PM Dashboard - Process Flow Diagram */
 .pm-dashboard-container {
   padding: 2rem;
-  height: 100vh;
-  /* Fixed height to match screen */
-  width: 100vw;
-  /* Fixed width */
-  overflow: hidden;
-  /* Prevent all scroll bars on container if possible, or just x */
+  min-height: calc(100vh - var(--header-height));
+  width: 100%;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
