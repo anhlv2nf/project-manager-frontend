@@ -129,28 +129,28 @@ const UserManagement = () => {
         <div className="fade-in">
             <div className="stats-grid">
                 <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#eef2ff', color: '#4f46e5' }}>👥</div>
+                    <div className="stat-icon" style={{ background: 'rgba(99, 102, 241, 0.08)', color: 'var(--primary)' }}>👥</div>
                     <div className="stat-info">
                         <h4>Tổng thành viên</h4>
                         <div className="stat-value">{users.length}</div>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#ecfdf5', color: '#10b981' }}>✅</div>
+                    <div className="stat-icon" style={{ background: 'rgba(16, 185, 129, 0.08)', color: 'var(--success)' }}>✅</div>
                     <div className="stat-info">
                         <h4>Đang hoạt động</h4>
                         <div className="stat-value">{users.filter(u => u.status === USER_STATUS.ACTIVE).length}</div>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#fef2f2', color: '#ef4444' }}>🚫</div>
+                    <div className="stat-icon" style={{ background: 'rgba(239, 68, 68, 0.08)', color: 'var(--danger)' }}>🚫</div>
                     <div className="stat-info">
                         <h4>Bị khóa</h4>
                         <div className="stat-value">{users.filter(u => u.status === USER_STATUS.INACTIVE).length}</div>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#fffbe3', color: '#f59e0b' }}>👑</div>
+                    <div className="stat-icon" style={{ background: 'rgba(245, 158, 11, 0.08)', color: 'var(--warning)' }}>👑</div>
                     <div className="stat-info">
                         <h4>Quản trị viên</h4>
                         <div className="stat-value">{users.filter(u => u.role === USER_ROLES.ADMIN).length}</div>
@@ -159,16 +159,15 @@ const UserManagement = () => {
             </div>
 
             <div className="card">
-                <div className="card-header" style={{ padding: '1.5rem 2rem' }}>
+                <div className="card-header">
                     <div>
-                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Người dùng hệ thống</h3>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '4px 0 0 0' }}>
-                            Danh sách và quyền hạn của các thành viên trong dự án.
-                        </p>
+                        <h3 style={{ fontSize: '1.1rem' }}>Người dùng hệ thống</h3>
+                        <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '2px' }}>
+                            Danh sách {users.length} tài khoản thành viên
+                        </div>
                     </div>
-                    <button className="btn btn-primary" style={{ padding: '0.625rem 1.25rem', borderRadius: '10px' }} onClick={() => { resetForm(); setShowModal(true); }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="8.5" cy="7" r="4" /><line x1="20" y1="8" x2="20" y2="14" /><line x1="17" y1="11" x2="23" y2="11" /></svg>
-                        Thêm thành viên
+                    <button className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }} onClick={() => { resetForm(); setShowModal(true); }}>
+                        <span style={{ marginRight: '6px' }}>+</span> Thêm thành viên
                     </button>
                 </div>
 

@@ -43,58 +43,62 @@ const Login = () => {
             justifyContent: 'center',
             background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
         }}>
-            <div className="card" style={{ width: '400px', padding: '2.5rem' }}>
-                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <h2 style={{ fontSize: '1.5rem', color: 'var(--primary)', marginBottom: '0.5rem' }}>Quản lý Dự án</h2>
-                    <p style={{ color: 'var(--text-muted)' }}>Đăng nhập vào hệ thống để bắt đầu</p>
+            <div className="card" style={{ width: '380px', padding: '2rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                    <h2 style={{ fontSize: '1.35rem', color: 'var(--primary)', marginBottom: '0.25rem', fontWeight: 700 }}>Quản lý Dự án</h2>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Đăng nhập vào hệ thống để bắt đầu</p>
                 </div>
 
                 {error && (
                     <div style={{
-                        padding: '0.75rem',
-                        background: '#fef2f2',
+                        padding: '0.65rem 0.85rem',
+                        background: 'rgba(239, 68, 68, 0.05)',
                         color: 'var(--danger)',
                         borderRadius: 'var(--radius-sm)',
-                        fontSize: '0.875rem',
-                        marginBottom: '1.5rem',
-                        border: '1px solid #fee2e2'
+                        fontSize: '0.8rem',
+                        marginBottom: '1.25rem',
+                        border: '1px solid rgba(239, 68, 68, 0.1)'
                     }}>
                         {error}
                     </div>
                 )}
 
                 <form onSubmit={handleSubmit}>
-                    <BaseInput
-                        label="Email"
-                        name="email"
-                        type="email"
-                        value={credentials.email}
-                        onChange={handleChange}
-                        placeholder="admin@example.com"
-                        required
-                    />
+                    <div style={{ marginBottom: '1rem' }}>
+                        <BaseInput
+                            label="Email"
+                            name="email"
+                            type="email"
+                            value={credentials.email}
+                            onChange={handleChange}
+                            placeholder="admin@example.com"
+                            required
+                        />
+                    </div>
 
-                    <BaseInput
-                        label="Mật khẩu"
-                        name="password"
-                        type="password"
-                        value={credentials.password}
-                        onChange={handleChange}
-                        placeholder="••••••••"
-                        required
-                    />
+                    <div style={{ marginBottom: '1rem' }}>
+                        <BaseInput
+                            label="Mật khẩu"
+                            name="password"
+                            type="password"
+                            value={credentials.password}
+                            onChange={handleChange}
+                            placeholder="••••••••"
+                            required
+                        />
+                    </div>
 
                     <LoadingButton
                         type="submit"
                         className="btn-primary"
-                        style={{ width: '100%', padding: '0.75rem', marginTop: '1rem', justifyContent: 'center' }}
+                        style={{ width: '100%', padding: '0.65rem', marginTop: '0.5rem', justifyContent: 'center', fontSize: '0.95rem' }}
                         loading={loading}
                     >
                         Đăng nhập
                     </LoadingButton>
                 </form>
 
-                <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: 'var(--text-muted)' }}>
+                <div style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                     Quên mật khẩu? Liên hệ quản trị viên.
                 </div>
             </div>

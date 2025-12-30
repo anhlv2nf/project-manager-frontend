@@ -22,14 +22,14 @@ const ProjectTable = ({ projects, onEdit, onDelete }) => {
                 <tbody>
                     {projects.map(project => (
                         <tr key={project.id} className="fade-in">
-                            <td style={{ padding: '1.25rem 1.5rem' }}>
+                            <td style={{ padding: '0.85rem 1.25rem' }}>
                                 <div
                                     style={{
-                                        fontWeight: 700,
+                                        fontWeight: 600,
                                         color: 'var(--primary)',
                                         cursor: 'pointer',
-                                        fontSize: '0.95rem',
-                                        marginBottom: '0.25rem'
+                                        fontSize: '0.9rem',
+                                        marginBottom: '0.15rem'
                                     }}
                                     onClick={() => navigate(`/projects/${project.id}`)}
                                 >

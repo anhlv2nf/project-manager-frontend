@@ -18,20 +18,20 @@ const UserTable = ({ users, onEdit, onDelete }) => {
                 <tbody>
                     {users.map(user => (
                         <tr key={user.id} className="fade-in">
-                            <td style={{ padding: '1.25rem 1.5rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <td style={{ padding: '0.85rem 1.25rem' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                     <div
                                         className="avatar"
                                         style={{
-                                            width: '36px',
-                                            height: '36px',
-                                            fontSize: '14px',
+                                            width: '32px',
+                                            height: '32px',
+                                            fontSize: '12px',
                                             background: `hsl(${(user.id * 137.5) % 360}, 65%, 60%)`
                                         }}
                                     >
                                         {user.name?.[0]?.toUpperCase()}
                                     </div>
-                                    <div style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.9rem' }}>{user.name}</div>
+                                    <div style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.85rem' }}>{user.name}</div>
                                 </div>
                             </td>
                             <td>
